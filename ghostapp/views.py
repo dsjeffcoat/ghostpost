@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from ghostapp.models import GhostPost
 from ghostapp.forms import GhostForm
+import string
+import random
 # Create your views here.
 
 
 def index(request):
-    posts_list = GhostPost.objects.order_by("-time_submitted")
+    posts_list = GhostPost.objects.all().order_by("-time_submitted")
     return render(request, 'index.html', {'posts': posts_list})
 
 
@@ -47,15 +49,24 @@ def createpost_view(request):
         form = GhostForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            GhostPost.objects.create(
+            code = ''.join(random.choices(
+                (string.ascii_letters + string.digits), k=6))
+            new_post = GhostPost.objects.create(
                 post=data.get('post'),
-                is_boast=data.get('is_boast')
+                is_boast=data.get('is_boast'),
+                sec_key=code
             )
-            return HttpResponseRedirect(reverse('homepage'))
+            return render(request, 'generic_form.html', {'post': new_post})
 
     form = GhostForm()
     return render(request, 'generic_form.html', {'form': form})
 
 
-def deletepost_view(request):
-    pass
+def deletepost_view(request, post_id):
+    del_post = GhostPost.objects.get(id=post_id).delete()
+    return HttpResponseRedirect(reverse("homepage"))
+
+
+def detail_view(request, sec_key):
+    post = GhostPost.objects.get(sec_key=sec_key)
+    return render(request, 'post_detail.html', {'post': post})

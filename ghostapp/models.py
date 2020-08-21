@@ -10,6 +10,7 @@ class GhostPost(models.Model):
     upvote = models.IntegerField(default=0)
     downvote = models.IntegerField(default=0)
     time_submitted = models.DateTimeField(default=timezone.now)
+    sec_key = models.CharField(max_length=6)
 
     def __str__(self):
         return self.post

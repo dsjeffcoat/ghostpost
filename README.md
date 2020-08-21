@@ -10,4 +10,5 @@ Diarte Jeffcoat
 
 ### Acknowledgments of Assistance
 
-Detrich Schilling
+Detrich Schilling during Study Hall
+Sohail Aslam

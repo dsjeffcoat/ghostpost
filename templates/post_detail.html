@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="list-group">
+  <ul class="list-group">
+    <li class="list-group-item">
+        {% if post.is_boast %}
+        <span class="badge badge-pill badge-dark">Boast</span>
+        {% else %}
+        <span class="badge badge-pill badge-dark">Roast</span>
+        {% endif %}
+
+        <p style="font-weight: bold; align-items: end;">"{{ post.post }}"</p>
+    
+
+        <div class="container">
+          <p style="font-weight: bold">Total Votes: {{ post.total_score }}</p>
+          <a href='/upvote/{{ post.id }}'><button type="button" class="btn btn-success">Upvote</button></a>
+          <a href='/downvote/{{ post.id }}'><button type="button" class="btn btn-danger">Downvote</button></a>
+        </div>
+        <p style="font-style: italic; text-align: right">{{ post.time_submitted }}</p>
+        <a href="{% url 'deletepost' post.id %}"><button type="button" class="btn btn-dark pull-right">Delete</button></a>
+        <a href='/'><button type="button" class="btn btn-primary pull-right">Home</button></a>
+
+    </li>
+  </ul>
+</div>
+
+{% endblock  %}

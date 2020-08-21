@@ -10,6 +10,7 @@
   </div>
 </div>
 
+{% if not post %}
 <div class='container'>
     <form action='' method='POST'>
         {% csrf_token %}
@@ -17,6 +18,11 @@
         <input type="submit" value="Submit Post">
     </form>
 </div>
-
-
+{% else %}
+<div class='container'>
+  <h2 style="text-align">Your secret code is ---> <a href="{% url 'postdetail' post.sec_key %}">{{ post.sec_key }}</a></h2>
+  <p>Keep this in a safe place if you want to delete it. Otherwise, just head back on home and read more GhostPosts!</p>
+  <a href="/" class="btn btn-primary btn-sm" role="button">Home</a>
+</div>
+{% endif %}
 {% endblock  %}

@@ -1,12 +1,14 @@
 from django.urls import path
-from ghostapp.views import index, votes_view, upvote_view, downvote_view, boasts_view, roasts_view, createpost_view
+from ghostapp import views as v
 
 urlpatterns = [
-    path('', index, name="homepage"),
-    path('votes/', votes_view, name="votes"),
-    path('upvote/<int:post_id>/', upvote_view, name="upvote"),
-    path('downvote/<int:post_id>/', downvote_view, name="downvote"),
-    path('boasts/', boasts_view, name="boasts"),
-    path('roasts/', roasts_view, name="roasts"),
-    path('add-post/', createpost_view, name="createpost"),
+    path('', v.index, name="homepage"),
+    path('votes/', v.votes_view, name="votes"),
+    path('upvote/<int:post_id>/', v.upvote_view, name="upvote"),
+    path('downvote/<int:post_id>/', v.downvote_view, name="downvote"),
+    path('boasts/', v.boasts_view, name="boasts"),
+    path('roasts/', v.roasts_view, name="roasts"),
+    path('add-post/', v.createpost_view, name="createpost"),
+    path('detail/<str:sec_key>', v.detail_view, name="postdetail"),
+    path('delete/<int:post_id>/', v.deletepost_view, name="deletepost"),
 ]

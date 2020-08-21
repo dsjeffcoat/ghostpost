@@ -14,4 +14,4 @@ class GhostForm(forms.ModelForm):
     class Meta:
         model = GhostPost
         fields = ['post']
-        exclude = (['time_submitted'])
+        exclude = (['time_submitted', 'sec_key'])
