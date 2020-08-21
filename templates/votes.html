@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <hr class="my-4" />
+  <h2 style="text-align: center; color: grey;">Most Popular Posts</h2>
+  <hr class="my-4" />
+</div>
+
+<div class="list-group">
+  <ul class="list-group">
+    {% for vpost in voted_posts %}
+    <li class="list-group-item">
+        {% if vpost.is_boast %}
+        <span class="badge badge-pill badge-dark">Boast</span>
+        {% else %}
+        <span class="badge badge-pill badge-dark">Roast</span>
+        {% endif %}
+
+        <p style="font-weight: bold; align-items: end;">"{{ vpost.post }}"</p>
+    
+
+        <div class="container">
+          <p style="font-weight: bold">Total Votes: {{ vpost.total_score }}</p>
+            <a href='/upvote/{{ vpost.id }}'><button type="button" class="btn btn-success">Upvote</button></a>
+            <a href='/downvote/{{ vpost.id }}'><button type="button" class="btn btn-danger">Downvote</button></a>
+        </div>
+        <p style="font-style: italic; text-align: right">{{ vpost.time_submitted }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock  %}

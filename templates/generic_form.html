@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Create A Post</h1>
+    <p class="lead">What's going on with you today?</p>
+    <hr class="my-4">
+    <a href="/" class="btn btn-primary btn-sm" role="button">Home</a>
+  </div>
+</div>
+
+<div class='container'>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit Post">
+    </form>
+</div>
+
+
+{% endblock  %}

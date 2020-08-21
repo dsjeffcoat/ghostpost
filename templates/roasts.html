@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <hr class="my-4" />
+  <h2 style="text-align: center; color: grey;">Latest Roasts</h2>
+  <hr class="my-4" />
+</div>
+
+<div class="list-group">
+  <ul class="list-group">
+    {% for roast in roasts %}
+    <li class="list-group-item">
+        {% if roast.is_boast %}
+        <span class="badge badge-pill badge-dark">Boast</span>
+        {% else %}
+        <span class="badge badge-pill badge-dark">Roast</span>
+        {% endif %}
+
+        <p style="font-weight: bold; align-items: end;">"{{ roast.post }}"</p>
+    
+
+        <div class="container">
+          <p style="font-weight: bold">Total Votes: {{ roast.total_score }}</p>
+          <a href='/upvote/{{ roast.id }}'><button type="button" class="btn btn-success">Upvote</button></a>
+          <a href='/downvote/{{ roast.id }}'><button type="button" class="btn btn-danger">Downvote</button></a> 
+        </div>
+        <p style="font-style: italic; text-align: right">{{ roast.time_submitted }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% endblock  %}
