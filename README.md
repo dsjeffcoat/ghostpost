@@ -11,4 +11,5 @@ Diarte Jeffcoat
 ### Acknowledgments of Assistance
 
 Detrich Schilling during Study Hall
-Sohail Aslam
+
+Sohail Aslam (assisted with extra credit)
